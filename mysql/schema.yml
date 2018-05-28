@@ -1,0 +1,51 @@
+tables:
+  mailqueue_queue:
+    field:
+      id:
+        primary_key: true
+        type: varchar(50)
+        not_null: true
+      send_id:
+        type: varchar(50)
+      subject:
+        type: varchar(255)
+      body:
+        type: mediumtext
+      rank:
+        type: int(13)
+      mail_from:
+        type: varchar(255)
+      mail_to:
+        type: varchar(255)
+      date_from:
+        type: datetime
+      date_to:
+        type: datetime
+      error_text:
+        type: mediumtext
+  mailqueue_send:
+    field:
+      id:
+        primary_key: true
+        type: varchar(50)
+        not_null: true
+      ip:
+        type: varchar(50)
+extra:
+  _description: Extra field to add to each table if not exist in schema.
+  field:
+    created_at:
+      type: timestamp
+      default: CURRENT_TIMESTAMP
+    updated_at:
+      type: timestamp
+      default: 'null'
+    created_by:
+      type: varchar(50)
+    updated_by:
+      type: varchar(50)
+      
+        
+        
+        
+        

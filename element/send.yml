@@ -1,0 +1,94 @@
+-
+  type: table
+  innerHTML:
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Time:'
+        -
+          type: td
+          attribute:
+            id: time
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Last time minutes:'
+        -
+          type: td
+          attribute:
+            id: last_time_minutes
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Is time to send:'
+        -
+          type: td
+          attribute:
+            id: isTimeToSend
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Count:'
+        -
+          type: td
+          attribute:
+            id: count
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Sent:'
+        -
+          type: td
+          attribute:
+            id: sent_count
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Errors:'
+        -
+          type: td
+          attribute:
+            id: error_count
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Interval minutes:'
+        -
+          type: td
+          attribute:
+            id: interval_minutes
+          innerHTML: _
+    -
+      type: tr
+      innerHTML:
+        -
+          type: th
+          innerHTML: 'Interval messages:'
+        -
+          type: td
+          attribute:
+            id: interval_messages
+          innerHTML: _
+          
+          
+          
