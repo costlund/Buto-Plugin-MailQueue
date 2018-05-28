@@ -1,2 +1,2 @@
 # Buto-Plugin-MailQueue
-Mail queue plugin.
+Mail queue plugin .
