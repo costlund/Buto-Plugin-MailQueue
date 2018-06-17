@@ -1,4 +1,5 @@
 <?php
+
 class PluginMailQueue{
 // <editor-fold defaultstate="collapsed" desc="Variables">
   private $settings;
