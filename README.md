@@ -25,3 +25,14 @@ plugin_modules:
   mailqueue:
     plugin: 'mail/queue'
 ```
+
+Get help from PluginSitMysqlmanager to create tables.
+With this registration call url /mysqlmanager_mailqueue/desktop.
+```
+mysqlmanager_mailqueue:
+  plugin: 'sit/mysqlmanager'
+  settings:
+    mysql: 'yml:/theme/_folder_/_folder_/config/mysql.yml'
+    schema: '/plugin/mail/queue/mysql/schema.yml'
+```
+
