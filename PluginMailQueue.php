@@ -1,4 +1,5 @@
 <?php
+
 class PluginMailQueue{
 // <editor-fold defaultstate="collapsed" desc="Variables">
   private $settings;
@@ -17,6 +18,9 @@ class PluginMailQueue{
       }
       if(!$this->settings->get('data/interval_messages')){
         $this->settings->set('data/interval_messages', 4);
+      }
+      if(!is_array($this->settings->get('data/phpmailer'))){
+        $this->settings->set('data/phpmailer', wfSettings::getSettingsFromYmlString($this->settings->get('data/phpmailer')));
       }
     }
   }
