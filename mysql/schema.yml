@@ -39,7 +39,6 @@ extra:
       default: CURRENT_TIMESTAMP
     updated_at:
       type: timestamp
-      default: 'null'
     created_by:
       type: varchar(50)
     updated_by:
