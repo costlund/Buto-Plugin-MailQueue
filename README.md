@@ -21,6 +21,7 @@ plugin:
         interval_minutes: 4
         interval_messages: 5
         secret_key: '_my_secret_key_'
+        attachment_folder: _my_attachment_folder_
 plugin_modules:
   mailqueue:
     plugin: 'mail/queue'

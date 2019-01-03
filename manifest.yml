@@ -1,5 +1,8 @@
-version: '1.0'
+version: '1.1'
 history:
+  '1.1':
+    date: '2019-01-03'
+    description: 'Add tables mailqueue_file and mailqueue_atttachment for handling attachments (not supported yet). '
   '1.0':
     description: 'First version.'
 plugin:
