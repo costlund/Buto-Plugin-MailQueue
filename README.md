@@ -10,6 +10,7 @@ Put mails in mailqueue table via create and call page send via schedule like a c
 - Param plugin/mail/queue/data/interval_minutes is how often this plugin will try to send email. A proper way should be to call page send every 5 minutes. 
 - Param plugin/mail/queue/data/interval_messages is the limit of how many mail for each time it will try to send.
 - Param plugin_modules/mailqueue must be set to be able to call url /mailqueue/send/key/_my_secret_key_.
+
 ```
 plugin:
   mail:
@@ -22,6 +23,8 @@ plugin:
         interval_messages: 5
         secret_key: '_my_secret_key_'
         attachment_folder: _my_attachment_folder_
+```
+```
 plugin_modules:
   mailqueue:
     plugin: 'mail/queue'
