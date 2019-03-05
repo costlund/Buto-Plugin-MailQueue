@@ -1,12 +1,8 @@
 <?php
-
 class PluginMailQueue{
-// <editor-fold defaultstate="collapsed" desc="Variables">
   private $settings;
   private $mysql;
   private $last_sent_minutes;
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Construct">
   function __construct($buto) {
     if($buto){
       wfPlugin::includeonce('wf/yml');
@@ -24,8 +20,6 @@ class PluginMailQueue{
       }
     }
   }
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Database">
   private function db_open(){
     $this->mysql->open($this->settings->get('data/mysql'));
   }
@@ -145,8 +139,6 @@ class PluginMailQueue{
     $this->mysql->execute($sql->get());
     return null;
   }
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Methods">
   private function getElement($name){
     return new PluginWfYml(__DIR__."/element/$name.yml");
   }
@@ -194,8 +186,6 @@ class PluginMailQueue{
       return false;
     }
   }
-// </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="Page">
   public function page_send(){
     if(!$this->settings->get('data/secret_key')){
       exit('Not proper settings (0).');
@@ -226,35 +216,12 @@ class PluginMailQueue{
          * 
          */
         $item = new PluginWfArray($value);
-//        /**
-//         * 
-//         */
-//        $this->db_queue_update_to_sent($item->get('id'), $send_id);
-//        /**
-//         * Send...
-//         */
-//        $data_mail->set('To', $item->get('mail_to'));
-//        $data_mail->set('Subject', $item->get('subject'));
-//        $data_mail->set('Body', $item->get('body'));
-//        /**
-//         * Result.
-//         */
-//        $result = new PluginWfArray($phpmailer->send($data_mail->get()));
-//        if($result->get('success')){
-//          $sent_count++;
-//        }else{
-//          $error_count++;
-//          $this->db_queue_update_error_text($item->get('id'), wfHelp::getYmlDump($result->get()));
-//        }
         $i = $this->sendMessage($item, $send_id);
         if($i){
           $sent_count++;
         }else{
           $error_count++;
         }
-        /**
-         * 
-         */
       }
     }else{
       $element->setById('isTimeToSend', 'innerHTML', 'No');
@@ -269,5 +236,4 @@ class PluginMailQueue{
     wfDocument::renderElement($element->get());
     exit;
   }
-// </editor-fold>
 }
