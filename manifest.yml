@@ -1,8 +1,11 @@
-version: '1.1'
+version: '1.2'
 history:
+  '1.2':
+    date: '2019-03-18'
+    description: 'Add account_id and tag to mailqueue_queue.'
   '1.1':
     date: '2019-01-03'
-    description: 'Add tables mailqueue_file and mailqueue_atttachment for handling attachments (not supported yet). '
+    description: 'Add tables mailqueue_file and mailqueue_atttachment for handling attachments (not supported yet).'
   '1.0':
     description: 'First version.'
 plugin:

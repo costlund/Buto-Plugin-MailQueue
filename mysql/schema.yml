@@ -25,11 +25,6 @@ tables:
         type: mediumtext
       account_id:
         type: varchar(50)
-        foreing_key:
-          reference_table: account
-          reference_field: id
-          on_delete: CASCADE
-          on_update: CASCADE
       tag:
         description: Optional field. Could be used to check if a reciever already got a specific message.
         type: varchar(255)

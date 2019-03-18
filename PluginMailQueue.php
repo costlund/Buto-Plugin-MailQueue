@@ -66,8 +66,8 @@ class PluginMailQueue{
    * @param type $rank
    * @return type
    */
-  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = 1){
-    return $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank);
+  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
+    return $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
   }
   /**
    * Create message in the queue and send at the same time.
@@ -98,7 +98,7 @@ class PluginMailQueue{
      */
     return $x;
   }
-  private function db_queue_insert($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = 1){
+  private function db_queue_insert($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
     if(is_null($subject) || is_null($body) || is_null($mail_to)){
       return false;
     }
@@ -107,6 +107,9 @@ class PluginMailQueue{
     }
     if(is_null($date_to)){
       $date_to = date('Y-m-d H:i:s', strtotime($date_from.' + 1 days'));
+    }
+    if(is_null($rank)){
+      $rank = 1;
     }
     $id = wfCrypt::getUid();
     $sql = $this->getSql('queue_insert');
@@ -119,6 +122,8 @@ class PluginMailQueue{
     $sql->set('params/mail_to/value', $mail_to);
     $sql->set('params/date_from/value', $date_from);
     $sql->set('params/date_to/value', $date_to);
+    $sql->set('params/account_id/value', $account_id);
+    $sql->set('params/tag/value', $tag);
     $this->db_open();
     $this->mysql->execute($sql->get());
     return $id;

@@ -32,3 +32,31 @@ plugin_modules:
 
 Schema is in /mysql/schema.yml.
 
+## PHP
+
+A plugin should use create method to add messages to queue.
+
+```
+wfPlugin::includeonce('mail/queue');
+$mail = new PluginMailQueue(true);
+$mail->create($subject, $body, $email, null, null, null, null, $account_id, $tag));
+```
+
+
+## Tag message
+
+Use the tag field to control if a specific email is sent.
+
+Example of sql for sending welcome message to new account created last two days.
+
+```
+select 
+id, 
+concat(id,'_welcome') as tag,
+email
+from account
+where datediff(now(), created_at) <= 2
+having tag NOT in (select tag from mailqueue_queue);
+```
+
+
