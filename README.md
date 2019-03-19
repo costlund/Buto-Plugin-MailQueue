@@ -56,7 +56,7 @@ concat(id,'_welcome') as tag,
 email
 from account
 where datediff(now(), created_at) <= 2
-having tag NOT in (select tag from mailqueue_queue);
+having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);
 ```
 
 
