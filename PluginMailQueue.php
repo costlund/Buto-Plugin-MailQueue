@@ -76,11 +76,11 @@ class PluginMailQueue{
    * @param type $mail_to
    * @return type
    */
-  public function send($subject, $body, $mail_to){
+  public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
     /**
      * Create message and get id.
      */
-    $id = $this->db_queue_insert($subject, $body, $mail_to, null, null, null, 999);
+    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag);
     /**
      * Get message via id.
      */
