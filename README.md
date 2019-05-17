@@ -60,3 +60,7 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);
 ```
 
 
+## Schema
+```
+/plugin/mail/queue/mysql/schema.yml
+```
