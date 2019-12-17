@@ -29,3 +29,11 @@ author: null
 links:
   - 'https://github.com'
 description: ''
+spec:
+  -
+    label: Send emails
+    text: Send emails via url /mailqueue/send/key/_my_key_.
+    test:
+      purpose: Check if a mail is sent.
+      prepare: Add content in table mailqueue_queue.
+      acceptance: Mail is sent only once and related post is creatated in mailqueue_send.
