@@ -1,5 +1,9 @@
-version: 1.2.0
+version: 1.3.0
 history:
+  1.3.0:
+    date: '2020-07-27'
+    title: Schema
+    description: 'Add from_name to mailqueue_queue.'
   1.2.0:
     date: '2019-03-18'
     title: Schema
