@@ -39,7 +39,7 @@ A plugin should use create method to add messages to queue.
 ```
 wfPlugin::includeonce('mail/queue');
 $mail = new PluginMailQueue(true);
-$mail->create($subject, $body, $email, null, null, null, null, $account_id, $tag));
+$mail->create($subject, $body, $email, null, null, null, null, $account_id, $tag);
 ```
 
 

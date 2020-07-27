@@ -74,13 +74,19 @@ class PluginMailQueue{
    * @param type $subject
    * @param type $body
    * @param type $mail_to
+   * @param type $send_id
+   * @param type $date_from
+   * @param type $date_to
+   * @param type $rank
+   * @param type $account_id
+   * @param type $tag
    * @return type
    */
-  public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
+  public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null){
     /**
      * Create message and get id.
      */
-    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag);
+    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag, $mail_from, $from_name);
     /**
      * Get message via id.
      */
@@ -98,7 +104,7 @@ class PluginMailQueue{
      */
     return $x;
   }
-  private function db_queue_insert($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
+  private function db_queue_insert($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null){
     if(is_null($subject) || is_null($body) || is_null($mail_to)){
       return false;
     }
@@ -118,7 +124,8 @@ class PluginMailQueue{
     $sql->set('params/subject/value', $subject);
     $sql->set('params/body/value', $body);
     $sql->set('params/rank/value', $rank);
-    $sql->set('params/mail_from/value', null);
+    $sql->set('params/mail_from/value', $mail_from);
+    $sql->set('params/from_name/value', $from_name);
     $sql->set('params/mail_to/value', $mail_to);
     $sql->set('params/date_from/value', $date_from);
     $sql->set('params/date_to/value', $date_to);
@@ -168,6 +175,16 @@ class PluginMailQueue{
     wfPlugin::includeonce('wf/phpmailer');
     $phpmailer = new PluginWfPhpmailer();
     $data_mail = new PluginWfArray($this->settings->get('data/phpmailer'));
+    /**
+     * Mail from
+     */
+    if($item->get('mail_from')){
+      $data_mail->set('From', $item->get('mail_from'));
+    }
+    if($item->get('from_name')){
+      $data_mail->set('FromName', $item->get('from_name'));
+    }
+    //wfHelp::yml_dump($data_mail);
     /**
      * 
      */

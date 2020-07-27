@@ -45,7 +45,7 @@ queue_update_error_text:
   
 queue_select_to_send:
   sql: |
-    select id,send_id,subject,body,rank,mail_from,mail_to,date_from,date_to,created_at,updated_at,created_by,updated_by 
+    select id,send_id,subject,body,rank,mail_from,from_name,mail_to,date_from,date_to,created_at,updated_at,created_by,updated_by 
     from mailqueue_queue 
     where
     isnull(send_id) and 
@@ -60,6 +60,7 @@ queue_select_to_send:
     - body
     - rank
     - mail_from
+    - from_name
     - mail_to
     - date_from
     - date_to
@@ -69,7 +70,7 @@ queue_select_to_send:
     - updated_by
 queue_select_one:
   sql: |
-    select id,send_id,subject,body,rank,mail_from,mail_to,date_from,date_to,created_at,updated_at,created_by,updated_by 
+    select id,send_id,subject,body,rank,mail_from,from_name,mail_to,date_from,date_to,created_at,updated_at,created_by,updated_by 
     from mailqueue_queue 
     where 
     id=? and 
@@ -88,6 +89,7 @@ queue_select_one:
     - body
     - rank
     - mail_from
+    - from_name
     - mail_to
     - date_from
     - date_to
@@ -97,8 +99,8 @@ queue_select_one:
     - updated_by
 queue_insert:
   sql: |
-    insert into mailqueue_queue (id,send_id,subject,body,rank,mail_from,mail_to,date_from,date_to,created_by,account_id,tag)
-    values (?,?,?,?,?,?,?,?,?,'[user_id]',?,?)
+    insert into mailqueue_queue (id,send_id,subject,body,rank,mail_from,from_name,mail_to,date_from,date_to,created_by,account_id,tag)
+    values (?,?,?,?,?,?,?,?,?,?,'[user_id]',?,?)
     ;
   params:
     id:
@@ -117,6 +119,9 @@ queue_insert:
       type: i
       value: 1
     mail_from:
+      type: s
+      value: _
+    from_name:
       type: s
       value: _
     mail_to:
