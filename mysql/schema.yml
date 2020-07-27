@@ -28,6 +28,8 @@ tables:
       tag:
         description: Optional field. Could be used to check if a reciever already got a specific message.
         type: varchar(255)
+      from_name:
+        type: varchar(255)
   mailqueue_file:
     field:
       id:
