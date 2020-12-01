@@ -1,5 +1,9 @@
-version: 1.4.0
+version: 1.4.1
 history:
+  1.4.1:
+    date: '2020-12-01'
+    title: 'Log'
+    description: 'Set event to false for PluginWfMysql.'
   1.4.0:
     date: '2020-07-27'
     title: 'New fields'

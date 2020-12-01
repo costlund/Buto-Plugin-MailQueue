@@ -8,6 +8,7 @@ class PluginMailQueue{
       wfPlugin::includeonce('wf/yml');
       wfPlugin::includeonce('wf/mysql');
       $this->mysql =new PluginWfMysql();
+      $this->mysql->event = false;
       $this->settings = wfPlugin::getPluginSettings('mail/queue', true);
       if(!$this->settings->get('data/interval_minutes')){
         $this->settings->set('data/interval_minutes', 2);
