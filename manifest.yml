@@ -27,7 +27,7 @@ history:
 plugin:
   -
     name: wf/yml
-    version: 1.2.2
+    version: 1.3.0
   -
     name: wf/mysql
     version: 1.13.0
