@@ -58,36 +58,65 @@ class PluginMailQueue{
   }
   /**
    * Create a message in the queue.
-   * @param type $subject
-   * @param type $body
-   * @param type $mail_to
-   * @param type $send_id
-   * @param type $date_from
-   * @param type $date_to
-   * @param type $rank
-   * @return type
+   * @param string $subject
+   * @param string $body
+   * @param string $mail_to
+   * @param string $send_id
+   * @param string $date_from
+   * @param string $date_to
+   * @param int $rank
+   * @param string $account_id
+   * @param string $tag
+   * @return string ID or false
    */
-  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null){
-    return $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
+  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $attachment = array()){
+    /**
+     * 
+     */
+    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
+    /**
+     * Attachment
+     */
+    $this->insert_attachment($id, $attachment);
+    /**
+     * 
+     */
+    return $id;
+  }
+  private function insert_attachment($id, $attachment){
+    if($attachment){
+      foreach($attachment as $v){
+        $i = new PluginWfArray($v);
+        if(!wfFilesystem::fileExist($i->get('path'))){
+          throw new Exception(__CLASS__." says: Attachment file ".$i->get('path')." could not be find");
+        }else{
+          wfFilesystem::copyFile($i->get('path'), wfGlobals::getAppDir().$this->settings->get('data/attachment_folder').'/'.$id.'/'.basename($i->get('path')));
+        }
+      }
+    }
   }
   /**
    * Create message in the queue and send at the same time.
-   * @param type $subject
-   * @param type $body
-   * @param type $mail_to
-   * @param type $send_id
-   * @param type $date_from
-   * @param type $date_to
-   * @param type $rank
-   * @param type $account_id
-   * @param type $tag
-   * @return type
+   * @param string $subject
+   * @param string $body
+   * @param string $mail_to
+   * @param string $send_id
+   * @param string $date_from
+   * @param string $date_to
+   * @param int $rank
+   * @param string $account_id
+   * @param string $tag
+   * @return string ID or false
    */
-  public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null){
+  public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array()){
     /**
      * Create message and get id.
      */
     $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag, $mail_from, $from_name);
+    /**
+     * Attachment
+     */
+    $this->insert_attachment($id, $attachment);
     /**
      * Get message via id.
      */
@@ -185,7 +214,17 @@ class PluginMailQueue{
     if($item->get('from_name')){
       $data_mail->set('FromName', $item->get('from_name'));
     }
-    //wfHelp::yml_dump($data_mail);
+    /**
+     * attachment
+     */
+    $dir = wfFilesystem::getScandir(wfGlobals::getAppDir().$this->settings->get('data/attachment_folder').'/'.$item->get('id'));
+    if($dir){
+      $attachment = array();
+      foreach($dir as $v){
+        $attachment[] = array('path' => wfSettings::replaceTheme($this->settings->get('data/attachment_folder')).'/'.$item->get('id').'/'.$v);
+      }
+      $data_mail->set('attachment', $attachment);
+    }
     /**
      * 
      */
@@ -258,5 +297,10 @@ class PluginMailQueue{
     $element->setById('last_time_minutes', 'innerHTML', $this->last_sent_minutes);
     wfDocument::renderElement($element->get());
     exit;
+  }
+  public function widget_test($data){
+    $data = new PluginWfArray($data);
+    $id = $this->send($data->get('data/subject'), $data->get('data/body'), $data->get('data/mail_to'), null, null, null, null, null, null, null, null, $data->get('data/attachment'));
+    wfHelp::yml_dump($id);
   }
 }
