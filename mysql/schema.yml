@@ -30,51 +30,6 @@ tables:
         type: varchar(255)
       from_name:
         type: varchar(255)
-  mailqueue_file:
-    field:
-      id:
-        description: This is also filename in Mailqueue folder.
-        primary_key: true
-        type: varchar(50)
-        not_null: true
-      name:
-        description: Example file.pdf
-        type: varchar(255)
-      encoding:
-        description: Default is base64.
-        type: varchar(50)
-        default: base64
-      type:
-        description: Example application/pdf
-        type: varchar(50)
-      disposition:
-        description: Default is attachment.
-        type: varchar(50)
-        default: attachment
-  mailqueue_attachment:
-    field:
-      id:
-        primary_key: true
-        type: varchar(50)
-        not_null: true
-      queue_id:
-        primary_key: true
-        type: varchar(50)
-        not_null: true
-        foreing_key:
-          reference_table: mailqueue_queue
-          reference_field: id
-          on_delete: CASCADE
-          on_update: CASCADE
-      file_id:
-        primary_key: true
-        type: varchar(50)
-        not_null: true
-        foreing_key:
-          reference_table: mailqueue_file
-          reference_field: id
-          on_delete: CASCADE
-          on_update: CASCADE
   mailqueue_send:
     field:
       id:
