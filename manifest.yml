@@ -1,5 +1,9 @@
-version: 1.5.0
+version: 1.6.0
 history:
+  1.6.0:
+    date: '2021-03-10'
+    title: Attachment
+    description: 'Handle theme replace in path. One could use param name to specify file name.'
   1.5.0:
     date: '2021-02-21'
     title: Attachment

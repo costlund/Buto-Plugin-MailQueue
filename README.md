@@ -39,9 +39,20 @@ A plugin should use create method to add messages to queue.
 ```
 wfPlugin::includeonce('mail/queue');
 $mail = new PluginMailQueue(true);
-$mail->create($subject, $body, $email, null, null, null, null, $account_id, $tag);
+$mail->create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array());
 ```
 
+### Attachment
+Example.
+```
+attachment:
+  -
+    path: _full_path_to_file_
+    name: _any_name_(optional)
+  -
+    path: '/User/Me/Test.pdf'
+    name: My_test_file.pdf
+```
 
 ## Tag message
 

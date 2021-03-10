@@ -3,6 +3,7 @@ class PluginMailQueue{
   private $settings;
   private $mysql;
   private $last_sent_minutes;
+  private $id = null;
   function __construct($buto) {
     if($buto){
       wfPlugin::includeonce('wf/yml');
@@ -73,25 +74,43 @@ class PluginMailQueue{
     /**
      * 
      */
-    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
+    $this->id = wfCrypt::getUid();
     /**
      * Attachment
      */
-    $this->insert_attachment($id, $attachment);
+    $this->insert_attachment($attachment);
     /**
      * 
      */
-    return $id;
+    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
+    /**
+     * 
+     */
+    return $this->id;
   }
-  private function insert_attachment($id, $attachment){
+  private function insert_attachment($attachment){
     if($attachment){
+      /**
+       * Validate
+       */
       foreach($attachment as $v){
         $i = new PluginWfArray($v);
+        $i->set('path', wfSettings::replaceTheme($i->get('path')));
         if(!wfFilesystem::fileExist($i->get('path'))){
           throw new Exception(__CLASS__." says: Attachment file ".$i->get('path')." could not be find");
-        }else{
-          wfFilesystem::copyFile($i->get('path'), wfGlobals::getAppDir().$this->settings->get('data/attachment_folder').'/'.$id.'/'.basename($i->get('path')));
         }
+      }
+      /**
+       * Save
+       */
+      foreach($attachment as $v){
+        $i = new PluginWfArray($v);
+        $i->set('path', wfSettings::replaceTheme($i->get('path')));
+        $name = basename($i->get('path'));
+        if($i->get('name')){
+          $name = $i->get('name');
+        }
+        wfFilesystem::copyFile($i->get('path'), wfGlobals::getAppDir().$this->settings->get('data/attachment_folder').'/'.$this->id.'/'.$name);
       }
     }
   }
@@ -106,21 +125,28 @@ class PluginMailQueue{
    * @param int $rank
    * @param string $account_id
    * @param string $tag
+   * @param string $mail_from
+   * @param string $from_name
+   * @param string $attachment
    * @return string ID or false
    */
   public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array()){
     /**
-     * Create message and get id.
+     * 
      */
-    $id = $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag, $mail_from, $from_name);
+    $this->id = wfCrypt::getUid();
     /**
      * Attachment
      */
-    $this->insert_attachment($id, $attachment);
+    $this->insert_attachment($attachment);
+    /**
+     * Create message and get id.
+     */
+    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag, $mail_from, $from_name);
     /**
      * Get message via id.
      */
-    $item = $this->db_queue_select_one($id);
+    $item = $this->db_queue_select_one($this->id);
     /**
      * Create send record and get id.
      */
@@ -147,9 +173,8 @@ class PluginMailQueue{
     if(is_null($rank)){
       $rank = 1;
     }
-    $id = wfCrypt::getUid();
     $sql = $this->getSql('queue_insert');
-    $sql->set('params/id/value', $id);
+    $sql->set('params/id/value', $this->id);
     $sql->set('params/send_id/value', $send_id);
     $sql->set('params/subject/value', $subject);
     $sql->set('params/body/value', $body);
@@ -163,7 +188,7 @@ class PluginMailQueue{
     $sql->set('params/tag/value', $tag);
     $this->db_open();
     $this->mysql->execute($sql->get());
-    return $id;
+    return $this->id;
   }
   private function db_queue_update_to_sent($id, $send_id){
     $sql = $this->getSql('queue_update_to_sent');
