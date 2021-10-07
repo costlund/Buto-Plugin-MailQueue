@@ -1,5 +1,14 @@
-version: 1.6.0
+version: 1.7.0
 history:
+  1.7.0:
+    date: '2021-10-05'
+    title: 'Invalid field names'
+    description: 'Due to MySql version 8 field names as subject, rank can´t be used. This field was renamed to mail_subject, mail_rank.'
+    webmaster: |
+      Rename this fields in all databases using this version.
+      ALTER TABLE mailqueue_queue 
+      CHANGE COLUMN subject mail_subject VARCHAR(255) NULL DEFAULT NUL,
+      CHANGE COLUMN rank mail_rank INT(13) NULL DEFAULT NULL;
   1.6.0:
     date: '2021-03-10'
     title: Attachment

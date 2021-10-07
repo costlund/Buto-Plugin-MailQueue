@@ -176,9 +176,9 @@ class PluginMailQueue{
     $sql = $this->getSql('queue_insert');
     $sql->set('params/id/value', $this->id);
     $sql->set('params/send_id/value', $send_id);
-    $sql->set('params/subject/value', $subject);
+    $sql->set('params/mail_subject/value', $subject);
     $sql->set('params/body/value', $body);
-    $sql->set('params/rank/value', $rank);
+    $sql->set('params/mail_rank/value', $rank);
     $sql->set('params/mail_from/value', $mail_from);
     $sql->set('params/from_name/value', $from_name);
     $sql->set('params/mail_to/value', $mail_to);

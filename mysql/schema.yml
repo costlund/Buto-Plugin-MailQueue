@@ -7,11 +7,11 @@ tables:
         not_null: true
       send_id:
         type: varchar(50)
-      subject:
+      mail_subject:
         type: varchar(255)
       body:
         type: mediumtext
-      rank:
+      mail_rank:
         type: int(13)
       mail_from:
         type: varchar(255)

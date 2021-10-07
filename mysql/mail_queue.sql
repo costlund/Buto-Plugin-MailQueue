@@ -9,7 +9,7 @@ select * from mailqueue_queue order by created_at desc;
 select 
 m.mail_to,
 s.created_at,
-m.subject,
+m.mail_subject,
 m.body,
 m.tag,
 m.error_text
@@ -22,7 +22,7 @@ order by s.created_at desc
 select 
 m.mail_to,
 m.created_at,
-m.subject,
+m.mail_subject,
 m.body,
 m.tag
 from mailqueue_queue as m
