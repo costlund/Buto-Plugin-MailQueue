@@ -41,6 +41,15 @@ wfPlugin::includeonce('mail/queue');
 $mail = new PluginMailQueue(true);
 $mail->create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array());
 ```
+Param body can be string or element.
+```
+$body = 'My string message!';
+```
+```
+-
+  type: p
+  innerHTML: 'My element message!';
+```
 
 ### Attachment
 Example.
