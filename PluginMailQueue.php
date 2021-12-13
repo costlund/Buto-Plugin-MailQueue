@@ -60,7 +60,7 @@ class PluginMailQueue{
   /**
    * Create a message in the queue.
    * @param string $subject
-   * @param string $body
+   * @param mixed $body String, Array
    * @param string $mail_to
    * @param string $send_id
    * @param string $date_from
@@ -79,6 +79,14 @@ class PluginMailQueue{
      * Attachment
      */
     $this->insert_attachment($attachment);
+    /**
+     * 
+     */
+    if(is_array($body)){
+      wfDocument::$capture = 2;
+      wfDocument::renderElement($body);
+      $body = wfDocument::getContent();
+    }
     /**
      * 
      */

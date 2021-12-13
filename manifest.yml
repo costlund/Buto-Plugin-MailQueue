@@ -1,5 +1,9 @@
-version: 1.7.1
+version: 1.8.0
 history:
+  1.8.0:
+    date: '2021-12-13'
+    title: 'Elements in body param'
+    description: 'In method create param body can be string or array.'
   1.7.1:
     date: '2021-10-27'
     title: Versions
