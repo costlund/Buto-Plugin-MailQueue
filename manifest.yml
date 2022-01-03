@@ -1,5 +1,9 @@
-version: 1.8.0
+version: 1.8.1
 history:
+  1.8.1:
+    date: '2022-01-03'
+    title: Versions
+    description: 'Versions update.'
   1.8.0:
     date: '2021-12-13'
     title: 'Elements in body param'
@@ -54,7 +58,7 @@ plugin:
     version: 1.14.6
   -
     name: wf/phpmailer
-    version: 1.3.0
+    version: 1.4.0
 sys:
   -
     name: mercury
