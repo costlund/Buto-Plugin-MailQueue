@@ -273,10 +273,9 @@ class PluginMailQueue{
      */
     $result = new PluginWfArray($phpmailer->send($data_mail->get()));
     if($result->get('success')){
-      //$sent_count++;
       return true;
     }else{
-      //$error_count++;
+      $result->set('smtp/Password', '******');
       $this->db_queue_update_error_text($item->get('id'), wfHelp::getYmlDump($result->get()));
       return false;
     }

@@ -1,5 +1,9 @@
-version: 1.8.1
+version: 1.8.2
 history:
+  1.8.2:
+    date: '2022-01-21'
+    title: Password
+    description: 'Removed password in error text.'
   1.8.1:
     date: '2022-01-03'
     title: Versions
