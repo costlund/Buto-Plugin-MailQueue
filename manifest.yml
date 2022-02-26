@@ -1,5 +1,9 @@
-version: 1.8.2
+version: 1.8.3
 history:
+  1.8.3:
+    date: '2022-02-26'
+    title: Body
+    description: 'The character U+2212 "−" replaced to character U+002d "-".'
   1.8.2:
     date: '2022-01-21'
     title: Password

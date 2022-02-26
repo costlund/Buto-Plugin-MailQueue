@@ -140,6 +140,10 @@ class PluginMailQueue{
    */
   public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array()){
     /**
+     * replace
+     */
+    $body = str_replace('−', '-', $body);
+    /**
      * 
      */
     $this->id = wfCrypt::getUid();
