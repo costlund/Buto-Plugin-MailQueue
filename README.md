@@ -84,3 +84,9 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);
 ```
 /plugin/mail/queue/mysql/schema.yml
 ```
+
+### Cron job
+Cron job every 5 minutes on your server.
+````
+*/5 * * * * wget https://_domain_/mailqueue/send/key/_my_key_
+````

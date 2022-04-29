@@ -1,5 +1,9 @@
-version: 1.8.3
+version: 1.8.4
 history:
+  1.8.4:
+    date: '2022-04-29'
+    title: Readme
+    description: 'Readme improvements.'
   1.8.3:
     date: '2022-02-26'
     title: Body
