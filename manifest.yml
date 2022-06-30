@@ -1,5 +1,17 @@
-version: 1.8.5
+version: 1.9.0
 history:
+  1.9.0:
+    date: '2022-06-30'
+    title: Date types
+    description: 'Change data types from TIMESTAMP to DATETIME to handle time zone better. Otherwize server system time will be used.'
+    webmaster: |
+      SQL to change current database.      
+      ALTER TABLE mailqueue_queue 
+      CHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
+      CHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;
+      ALTER TABLE mailqueue_send 
+      CHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
+      CHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;
   1.8.5:
     date: '2022-06-07'
     title: Versions

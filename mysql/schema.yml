@@ -42,10 +42,10 @@ extra:
   _description: Extra field to add to each table if not exist in schema.
   field:
     created_at:
-      type: timestamp
+      type: datetime
       default: CURRENT_TIMESTAMP
     updated_at:
-      type: timestamp
+      type: datetime
     created_by:
       type: varchar(50)
     updated_by:
