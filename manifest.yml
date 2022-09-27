@@ -1,17 +1,14 @@
-version: 1.9.0
+version: 1.9.1
 history:
+  1.9.1:
+    date: '2022-09-27'
+    title: Versions
+    description: 'Versions update.'
   1.9.0:
     date: '2022-06-30'
-    title: Date types
+    title: 'Date types'
     description: 'Change data types from TIMESTAMP to DATETIME to handle time zone better. Otherwize server system time will be used.'
-    webmaster: |
-      SQL to change current database.      
-      ALTER TABLE mailqueue_queue 
-      CHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
-      CHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;
-      ALTER TABLE mailqueue_send 
-      CHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
-      CHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;
+    webmaster: "SQL to change current database.      \nALTER TABLE mailqueue_queue \nCHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,\nCHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;\nALTER TABLE mailqueue_send \nCHANGE COLUMN created_at created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,\nCHANGE COLUMN updated_at updated_at DATETIME NULL DEFAULT NULL ;\n"
   1.8.5:
     date: '2022-06-07'
     title: Versions
@@ -80,10 +77,10 @@ history:
 plugin:
   -
     name: wf/yml
-    version: 1.4.0
+    version: 1.5.0
   -
     name: wf/mysql
-    version: 1.14.7
+    version: 1.14.9
   -
     name: wf/phpmailer
     version: 1.4.0
