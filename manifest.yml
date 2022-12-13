@@ -1,5 +1,9 @@
-version: 1.9.1
+version: 1.10.0
 history:
+  1.10.0:
+    date: '2022-12-13'
+    title: Attachment
+    description: 'Path replace improvements.'
   1.9.1:
     date: '2022-09-27'
     title: Versions

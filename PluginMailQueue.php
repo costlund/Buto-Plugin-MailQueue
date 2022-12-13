@@ -103,7 +103,7 @@ class PluginMailQueue{
        */
       foreach($attachment as $v){
         $i = new PluginWfArray($v);
-        $i->set('path', wfSettings::replaceTheme($i->get('path')));
+        $i->set('path', wfSettings::replaceDir($i->get('path')));
         if(!wfFilesystem::fileExist($i->get('path'))){
           throw new Exception(__CLASS__." says: Attachment file ".$i->get('path')." could not be find");
         }
