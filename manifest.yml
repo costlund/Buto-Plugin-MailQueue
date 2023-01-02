@@ -1,5 +1,9 @@
-version: 1.10.0
+version: 1.10.1
 history:
+  1.10.1:
+    date: '2023-01-02'
+    title: Versions
+    description: 'Versions update.'
   1.10.0:
     date: '2022-12-13'
     title: Attachment
@@ -81,10 +85,10 @@ history:
 plugin:
   -
     name: wf/yml
-    version: 1.5.0
+    version: 1.5.1
   -
     name: wf/mysql
-    version: 1.14.9
+    version: 1.15.0
   -
     name: wf/phpmailer
     version: 1.4.0
