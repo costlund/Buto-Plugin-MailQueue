@@ -142,7 +142,7 @@ class PluginMailQueue{
     /**
      * replace
      */
-    $body = str_replace('−', '-', $body);
+    $body = wfPhpfunc::str_replace('−', '-', $body);
     /**
      * 
      */
