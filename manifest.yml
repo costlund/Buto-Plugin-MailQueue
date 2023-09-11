@@ -1,5 +1,9 @@
-version: 1.11.0
+version: 1.11.1
 history:
+  1.11.1:
+    date: '2023-09-11'
+    title: Versions
+    description: 'Versions update.'
   1.11.0:
     date: '2023-08-17'
     title: 'PHP 8.2'
@@ -89,13 +93,13 @@ history:
 plugin:
   -
     name: wf/yml
-    version: 1.5.1
+    version: 1.8.0
   -
     name: wf/mysql
-    version: 1.15.0
+    version: 1.17.0
   -
     name: wf/phpmailer
-    version: 1.4.0
+    version: 1.6.0
 sys:
   -
     name: mercury
