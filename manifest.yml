@@ -1,5 +1,9 @@
-version: 1.11.1
+version: 1.11.2
 history:
+  1.11.2:
+    date: '2023-11-24'
+    title: Force send
+    description: 'If domain is localhost one could force send messages via a param.'
   1.11.1:
     date: '2023-09-11'
     title: Versions

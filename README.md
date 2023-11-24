@@ -90,3 +90,9 @@ Cron job every 5 minutes on your server.
 ````
 */5 * * * * wget https://_domain_/mailqueue/send/key/_my_key_
 ````
+
+### Force send
+If domain is localhost one could force send messages via a param.
+````
+?time_to_send=1
+````

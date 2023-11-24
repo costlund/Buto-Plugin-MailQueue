@@ -4,6 +4,7 @@ class PluginMailQueue{
   private $mysql;
   private $last_sent_minutes;
   private $id = null;
+  private $localhost = null;
   function __construct($buto) {
     if($buto){
       wfPlugin::includeonce('wf/yml');
@@ -21,6 +22,7 @@ class PluginMailQueue{
         $this->settings->set('data/phpmailer', wfSettings::getSettingsFromYmlString($this->settings->get('data/phpmailer')));
       }
     }
+    $this->localhost = wfServer::isHost('localhost');
   }
   private function db_open(){
     $this->mysql->open($this->settings->get('data/mysql'));
@@ -225,6 +227,15 @@ class PluginMailQueue{
     return new PluginWfYml(__DIR__.'/mysql/sql.yml', $key);
   }
   private function isTimeToSend(){
+    /**
+     * Force send if localhost and param time_to_send.
+     */
+    if($this->localhost && wfRequest::get('time_to_send')){
+      return true;
+    }
+    /**
+     * 
+     */
     $last_sent = $this->db_send_select_last_created_at();
     if(!$last_sent){
       /**
