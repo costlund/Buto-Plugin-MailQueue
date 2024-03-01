@@ -72,7 +72,7 @@ class PluginMailQueue{
    * @param string $tag
    * @return string ID or false
    */
-  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $attachment = array()){
+  public function create($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array()){
     /**
      * 
      */
@@ -92,7 +92,7 @@ class PluginMailQueue{
     /**
      * 
      */
-    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag);
+    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag, $mail_from, $from_name);
     /**
      * 
      */
