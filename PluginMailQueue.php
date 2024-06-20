@@ -179,7 +179,7 @@ class PluginMailQueue{
       return false;
     }
     if(is_null($date_from)){
-      $date_from = date('Y-m-d H:i:s');
+      $date_from = date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s').' + 30 minutes'));
     }
     if(is_null($date_to)){
       $date_to = date('Y-m-d H:i:s', strtotime($date_from.' + 1 days'));

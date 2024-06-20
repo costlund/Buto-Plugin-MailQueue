@@ -1,5 +1,9 @@
-version: 1.12.0
+version: 1.13.0
 history:
+  1.13.0:
+    date: '2024-06-17'
+    title: Delay
+    description: 'Add send delay of 30 minutes if param date_from is null.'
   1.12.0:
     date: '2024-03-01'
     title: Create
