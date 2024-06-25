@@ -27,6 +27,13 @@ class PluginMailQueue{
   private function db_open(){
     $this->mysql->open($this->settings->get('data/mysql'));
   }
+  public function set_settings($path, $value){
+    /**
+     * Made 240624 to set data/mysql with plugin mail/queue_admin.
+     */
+    $this->settings->set($path, $value);
+    return null;
+  }
   private function db_send_select_last_created_at(){
     $sql = $this->getSql('send_select_last_created_at');
     $this->db_open();

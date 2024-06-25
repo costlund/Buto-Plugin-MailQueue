@@ -1,5 +1,9 @@
-version: 1.13.0
+version: 1.14.0
 history:
+  1.14.0:
+    date: '2024-06-25'
+    title: Method
+    description: 'Add method set_settings.'
   1.13.0:
     date: '2024-06-17'
     title: Delay
