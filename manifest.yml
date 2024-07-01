@@ -1,5 +1,9 @@
-version: 1.14.0
+version: 1.15.0
 history:
+  1.15.0:
+    date: '2024-07-01'
+    title: Send
+    description: 'Improvements in method send.'
   1.14.0:
     date: '2024-06-25'
     title: Method

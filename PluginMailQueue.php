@@ -133,13 +133,14 @@ class PluginMailQueue{
   }
   /**
    * Create message in the queue and send at the same time.
+   * One should omit params date_from, date_to, rank due to they will be overridden.
    * @param string $subject
    * @param string $body
    * @param string $mail_to
    * @param string $send_id
-   * @param string $date_from
-   * @param string $date_to
-   * @param int $rank
+   * @param string $date_from (Sets to current time)
+   * @param string $date_to (Sets to current time plus one day)
+   * @param int $rank (Sets to zero)
    * @param string $account_id
    * @param string $tag
    * @param string $mail_from
@@ -148,6 +149,12 @@ class PluginMailQueue{
    * @return string ID or false
    */
   public function send($subject, $body, $mail_to, $send_id = null, $date_from = null ,$date_to = null, $rank = null, $account_id = null, $tag = null, $mail_from = null, $from_name = null, $attachment = array()){
+    /**
+     * Overridden params.
+     */
+    $date_from = date('Y-m-d H:i:s');
+    $date_to = date('Y-m-d H:i:s', strtotime($date_from.' + 1 days'));
+    $rank = 0;
     /**
      * replace
      */
@@ -163,7 +170,7 @@ class PluginMailQueue{
     /**
      * Create message and get id.
      */
-    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, 0, $account_id, $tag, $mail_from, $from_name);
+    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag, $mail_from, $from_name);
     /**
      * Get message via id.
      */
