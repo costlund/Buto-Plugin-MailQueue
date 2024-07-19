@@ -99,7 +99,7 @@ class PluginMailQueue{
     /**
      * 
      */
-    $this->db_queue_insert($subject, $body, $mail_to, $send_id, $date_from, $date_to, $rank, $account_id, $tag, $mail_from, $from_name);
+    $this->db_queue_insert($subject, $body, $mail_to, null, $date_from, $date_to, $rank, $account_id, $tag, $mail_from, $from_name);
     /**
      * 
      */
