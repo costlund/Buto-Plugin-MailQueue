@@ -1,5 +1,9 @@
-version: 1.15.0
+version: 1.15.1
 history:
+  1.15.1:
+    date: '2024-07-19'
+    title: Readme
+    description: 'Improvements.'
   1.15.0:
     date: '2024-07-01'
     title: Send
