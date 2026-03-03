@@ -145,6 +145,15 @@ readme:
         -
           name: send
         -
+          name: send_now
+          description: |
+            Send a message directly.
+            ````
+            wfPlugin::includeonce('mail/queue');
+            $mailQueue = new PluginMailQueue(true);
+            $success = $mailQueue->send_now(wfRequest::get('id'));
+            ````
+        -
           name: db_queue_insert
         -
           name: db_queue_update_to_sent

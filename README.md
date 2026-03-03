@@ -13,6 +13,8 @@
 
 ## Settings
 
+
+
 <pre><code>plugin:
   mail:
     queue:
@@ -35,9 +37,13 @@
 
 
 
+
+
 <a name="key_1_0"></a>
 
 ### Tag
+
+
 
 <p>Use the tag field to control if a specific email is sent.
 Example of sql for sending welcome message to new account created last two days.</p>
@@ -53,11 +59,15 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 ### Schema
 
+
+
 <pre><code>/plugin/mail/queue/mysql/schema.yml</code></pre>
 
 <a name="key_1_2"></a>
 
 ### Cron job
+
+
 
 <p>Cron job every 5 minutes on your server.</p>
 <pre><code>*/5 * * * * wget https://_domain_/mailqueue/send/key/_my_key_</code></pre>
@@ -65,6 +75,8 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 <a name="key_1_3"></a>
 
 ### Force send
+
+
 
 <p>If domain is localhost one could force send messages via a param.</p>
 <pre><code>?time_to_send=1</code></pre>
@@ -75,9 +87,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_2_0"></a>
 
 ### page_send
+
+
 
 
 
@@ -87,9 +103,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_3_0"></a>
 
 ### widget_test
+
+
 
 
 
@@ -99,9 +119,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_5"></a>
 
 ## Construct
+
+
 
 
 
@@ -111,9 +135,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_6"></a>
 
 ## Methods
+
+
 
 
 
@@ -123,9 +151,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_6_1"></a>
 
 ### set_settings
+
+
 
 
 
@@ -135,9 +167,13 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_6_3"></a>
 
 ### db_send_insert
+
+
 
 
 
@@ -147,15 +183,21 @@ having tag NOT in (select COALESCE(tag, '') from mailqueue_queue);</code></pre>
 
 
 
+
+
 <a name="key_6_5"></a>
 
 ### db_queue_select_one
 
 
 
+
+
 <a name="key_6_6"></a>
 
 ### create
+
+
 
 <p>A plugin should use create method to add messages to queue.</p>
 <pre><code>wfPlugin::includeonce('mail/queue');
@@ -165,6 +207,8 @@ $mail-&gt;create($subject, $body, $mail_to, $send_id = null, $date_from = null ,
 <a name="key_6_6_0"></a>
 
 #### body
+
+
 
 <p>Param body can be string or element.</p>
 <pre><code>$body = 'My string message!';</code></pre>
@@ -176,6 +220,8 @@ $mail-&gt;create($subject, $body, $mail_to, $send_id = null, $date_from = null ,
 <a name="key_6_6_1"></a>
 
 #### attachment
+
+
 
 <p>Example.</p>
 <pre><code>attachment:
@@ -192,51 +238,80 @@ $mail-&gt;create($subject, $body, $mail_to, $send_id = null, $date_from = null ,
 
 
 
+
+
 <a name="key_6_8"></a>
 
 ### send
 
 
 
+
+
 <a name="key_6_9"></a>
+
+### send_now
+
+
+
+<p>Send a message directly.</p>
+<pre><code>wfPlugin::includeonce('mail/queue');
+$mailQueue = new PluginMailQueue(true);
+$success = $mailQueue-&gt;send_now(wfRequest::get('id'));</code></pre>
+
+<a name="key_6_10"></a>
 
 ### db_queue_insert
 
 
 
-<a name="key_6_10"></a>
+
+
+<a name="key_6_11"></a>
 
 ### db_queue_update_to_sent
 
 
 
-<a name="key_6_11"></a>
+
+
+<a name="key_6_12"></a>
 
 ### db_queue_update_error_text
 
 
 
-<a name="key_6_12"></a>
+
+
+<a name="key_6_13"></a>
 
 ### getElement
 
 
 
-<a name="key_6_13"></a>
+
+
+<a name="key_6_14"></a>
 
 ### getSql
 
 
 
-<a name="key_6_14"></a>
+
+
+<a name="key_6_15"></a>
 
 ### isTimeToSend
 
 
 
-<a name="key_6_15"></a>
+
+
+<a name="key_6_16"></a>
 
 ### sendMessage
+
+
 
 
 

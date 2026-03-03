@@ -66,6 +66,13 @@ class PluginMailQueue{
     $this->mysql->execute($sql->get());
     return new PluginWfArray($this->mysql->getStmtAsArrayOne());
   }
+  private function db_queue_select_one_now($id){
+    $sql = $this->getSql('queue_select_one_now');
+    $sql->set('params/id/value', $id);
+    $this->db_open();
+    $this->mysql->execute($sql->get());
+    return $this->mysql->getOne(array('sql' => $sql->get()));
+  }
   /**
    * Create a message in the queue.
    * @param string $subject
@@ -175,6 +182,21 @@ class PluginMailQueue{
      * Get message via id.
      */
     $item = $this->db_queue_select_one($this->id);
+    /**
+     * Create send record and get id.
+     */
+    $send_id = $this->db_send_insert();
+    /**
+     * Send message.
+     */
+    $x = $this->sendMessage($item, $send_id);
+    /**
+     * Return true/false.
+     */
+    return $x;
+  }
+  public function send_now($id){
+    $item = $this->db_queue_select_one_now($id);
     /**
      * Create send record and get id.
      */

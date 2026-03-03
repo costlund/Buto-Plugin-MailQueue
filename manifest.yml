@@ -1,5 +1,9 @@
-version: 1.15.1
+version: 1.15.2
 history:
+  1.15.2:
+    date: '2026-03-03'
+    title: Send now
+    description: 'Add method send_now.'
   1.15.1:
     date: '2024-07-19'
     title: Readme
