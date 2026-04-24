@@ -115,6 +115,12 @@ class PluginMailQueue{
   private function insert_attachment($attachment){
     if($attachment){
       /**
+       * 
+       */
+      if(!$this->settings->get('data/attachment_folder')){
+        wfException::getException(__CLASS__, __FUNCTION__, 'Param attachment_folder is not set!');
+      }
+      /**
        * Validate
        */
       foreach($attachment as $v){
@@ -129,7 +135,7 @@ class PluginMailQueue{
        */
       foreach($attachment as $v){
         $i = new PluginWfArray($v);
-        $i->set('path', wfSettings::replaceTheme($i->get('path')));
+        $i->set('path', wfSettings::replaceDir($i->get('path')));
         $name = basename($i->get('path'));
         if($i->get('name')){
           $name = $i->get('name');
